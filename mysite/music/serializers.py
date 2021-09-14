@@ -19,6 +19,11 @@ class PlaylistSerializer(ModelSerializer):
             'songs': {'required': False}, # added this kwarg
         }
 
+    # think of validated data as a JSON body being POSTed
+    def create(self, validated_data):
+        validated_data['user'] = self.context['request'].user
+        return super().create(validated_data)    
+
 class SongSerializer(ModelSerializer):
     
     playlists = PlaylistSerializer(many=True, read_only=True)
