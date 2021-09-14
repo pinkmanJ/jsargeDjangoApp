@@ -1,0 +1,9 @@
+{% if list_of_strings %}
+    <ul>
+    {% for string in list_of_strings %}
+        <li><a href="/music/{{ song.name }}/">{{ song.name }}</a></li>
+    {% endfor %}    
+    </ul>
+{% else %}
+    <p>No songs available.</p>
+{% endif %}        
