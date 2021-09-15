@@ -4,7 +4,6 @@ from .models import Playlist, Song, User
 
 class PlaylistSerializer(ModelSerializer):
     
-    
     class Meta:
         ordering = ['-id']
         model = Playlist

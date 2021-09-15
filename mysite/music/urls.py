@@ -4,8 +4,10 @@ from rest_framework import routers
 
 from . import views
 
+app_name = "music" ###### 
 router = routers.DefaultRouter()
 #router.register(r'playlists', views.PlaylistViewSet)
+router.register(r'music', views.PlaylistViewSet) #######
 router.register(r'api/playlists', views.PlaylistViewSet)
 router.register(r'api/songs', views.SongViewSet)
 
