@@ -11,7 +11,6 @@ router.register(r'api/songs', views.SongViewSet)
 
 urlpatterns = [
     path('', views.index),
-    path('getSongs', views.songs),
     #path('<int:artist_id>/', views.detail, name='detail'),
     #path('<int:artist_id>/albums/', views.getAlbums, name='getAlbums'),
     #path('<int:artist_id>/songs/', views.getSongs, name='getSongs'),
