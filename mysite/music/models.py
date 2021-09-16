@@ -11,7 +11,6 @@ User = get_user_model()
    # def __str__(self):
     #    return self.name
 
-
 #class Album(models.Model):
  #   artist = models.ForeignKey(Artist, on_delete=models.CASCADE)
   #  name = models.CharField(max_length=255)
@@ -24,6 +23,5 @@ class Song(models.Model):
 class Playlist(models.Model):
     title = models.CharField(max_length=255)
     user = models.ForeignKey(User, related_name='playlists', on_delete=models.CASCADE)
-    #songs = models.ManyToManyField(Song, blank=True)
     songs = models.ManyToManyField('Song', related_name='playlists', blank=True)
          

@@ -15,16 +15,16 @@ class PlaylistSerializer(ModelSerializer):
         ]
         extra_kwargs = {
             'user': {'read_only': True},
-            'songs': {'required': False}, # added this kwarg
+            'songs': {'required': False}, # playlist doesn't have to have songs in it
         }
 
-    # think of validated data as a JSON body being POSTed
+    # attaches user to playlist object on creation
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
         return super().create(validated_data)    
 
 class SongSerializer(ModelSerializer):
-    
+     
     playlists = PlaylistSerializer(many=True, read_only=True)
 
     class Meta:
@@ -32,27 +32,15 @@ class SongSerializer(ModelSerializer):
         model = Song
         fields = [
             'id',
-            #'album',
             'name',
             'playlists',
         ]
 
         extra_kwargs = {
-            'playlists': {'required': False},
+            'playlists': {'required': False}, # songs don't need to be in a playlist to exist
         }
 
-    # think of validated data as a JSON body being POSTed
+    # attaches user to song object on creation (maybe not needed)
     def create(self, validated_data):
         validated_data['user'] = self.context['request'].user
-        return super().create(validated_data)
-
-    # update playlist
-
-    # delete playlist
-
-    # add song
-    #def addSongToPlaylist():
-        # give the title of the song
-        # give the playlist id?
-        # get playlist object
-        # add song object to playlist songs field       
+        return super().create(validated_data)   
